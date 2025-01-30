@@ -7,11 +7,11 @@ const Tablero: FC = () => {
   const indices = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
-    <div className={clsx("w-[400px] h-[400px] grid grid-cols-3 gap-4")}>
+    <section className={clsx("w-full h-[400px] grid grid-cols-3 gap-4")}>
       {indices.map((indice) => (
         <Casilla key={i++} contenido={indice.toString()} />
       ))}
-    </div>
+    </section>
   );
 };
 

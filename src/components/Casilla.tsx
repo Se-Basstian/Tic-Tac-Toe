@@ -22,11 +22,12 @@ const Casilla: FC<Props> = ({ contenido }) => {
       type="button"
       className={clsx(
         "w-full h-full bg-teal-300 text-black font-bold text-6xl",
-        "flex justify-center items-center rounded-2xl hover:scale-110",
+        "flex justify-center items-center rounded-2xl",
         "transition duration-75 ease-in",
         {
           "animate-rotacion-casilla": rotar,
           "bg-yellow-200": color === "amarrillo",
+          "hover:scale-110": !activo,
         },
       )}
       onClick={handleClick}
