@@ -2,40 +2,44 @@ import clsx from "clsx";
 import { useState, type FC } from "react";
 
 type Props = {
-  contenido: string;
+  index: number;
+  caracter: string | number;
+  color: "amarrillo" | "azul" | "verde";
+  jugador: {
+    value: "one" | "two";
+    setValue: (value: "one" | "two") => void;
+  };
 };
-const Casilla: FC<Props> = ({ contenido }) => {
-  const [rotar, setRotar] = useState(false);
-  const [color, setColor] = useState<"amarrillo" | "azul">();
+export const Casilla: FC<Props> = ({ caracter, color, index, jugador }) => {
+  const [colorCasilla, setColorCasilla] = useState(color);
   const [activo, setActivo] = useState(false);
 
-  const handleClick = () => {
-    setRotar(!rotar);
-    setTimeout(() => {
-      setColor("amarrillo");
-      setActivo(true);
-    }, 800);
+  const handleButton = () => {
+    if (jugador.value === "one") {
+      setColorCasilla("amarrillo");
+      jugador.setValue("two");
+    }
+    if (jugador.value === "two") {
+      setColorCasilla("azul");
+      jugador.setValue("one");
+    }
+
+    setActivo(true);
+    console.log(index);
   };
 
   return (
     <button
       type="button"
-      className={clsx(
-        "w-full h-full bg-teal-300 text-black font-bold text-6xl",
-        "flex justify-center items-center rounded-2xl",
-        "transition duration-75 ease-in",
-        {
-          "animate-rotacion-casilla": rotar,
-          "bg-yellow-200": color === "amarrillo",
-          "hover:scale-110": !activo,
-        },
-      )}
-      onClick={handleClick}
+      className={clsx("h-full w-full text-4xl font-bold rounded-xl ", {
+        "bg-yellow-400": colorCasilla === "amarrillo",
+        "bg-blue-400": colorCasilla === "azul",
+        "bg-green-400": colorCasilla === "verde",
+      })}
+      onClick={handleButton}
       disabled={activo}
     >
-      {contenido}
+      {caracter}
     </button>
   );
 };
-
-export default Casilla;
