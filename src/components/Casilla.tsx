@@ -4,13 +4,20 @@ import { useState, type FC } from "react";
 type Props = {
   index: number;
   caracter: string | number;
+  setCasilla: (index: number, jugador: "one" | "two") => void;
   color: "amarrillo" | "azul" | "verde";
   jugador: {
     value: "one" | "two";
     setValue: (value: "one" | "two") => void;
   };
 };
-export const Casilla: FC<Props> = ({ caracter, color, index, jugador }) => {
+export const Casilla: FC<Props> = ({
+  caracter,
+  color,
+  index,
+  jugador,
+  setCasilla,
+}) => {
   const [colorCasilla, setColorCasilla] = useState(color);
   const [activo, setActivo] = useState(false);
 
@@ -25,7 +32,7 @@ export const Casilla: FC<Props> = ({ caracter, color, index, jugador }) => {
     }
 
     setActivo(true);
-    console.log(index);
+    setCasilla(index, jugador.value);
   };
 
   return (
