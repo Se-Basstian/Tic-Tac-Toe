@@ -1,25 +1,18 @@
 import clsx from "clsx";
-import { useState, type FC } from "react";
+import { useContext, useState, type FC } from "react";
+import { DataContext } from "../shared/context";
 
 type Props = {
   index: number;
   caracter: string | number;
   setCasilla: (index: number, jugador: "one" | "two") => void;
   color: "amarrillo" | "azul" | "verde";
-  jugador: {
-    value: "one" | "two";
-    setValue: (value: "one" | "two") => void;
-  };
 };
-export const Casilla: FC<Props> = ({
-  caracter,
-  color,
-  index,
-  jugador,
-  setCasilla,
-}) => {
+export const Casilla: FC<Props> = ({ caracter, color, index, setCasilla }) => {
   const [colorCasilla, setColorCasilla] = useState(color);
   const [activo, setActivo] = useState(false);
+
+  const { jugador } = useContext(DataContext);
 
   const handleButton = () => {
     if (jugador.value === "one") {

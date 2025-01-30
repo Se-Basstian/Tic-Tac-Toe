@@ -3,7 +3,7 @@ import { Casilla } from "./Casilla";
 
 const Tablero: FC = () => {
   let i = 0;
-  const [jugador, setJugador] = useState<"one" | "two">("one");
+  // const [jugador, setJugador] = useState<"one" | "two">("one");
   const [casillasCaracter, setCasillasCaracter] = useState<(number | string)[]>(
     [1, 2, 3, 4, 5, 6, 7, 8, 9],
   );
@@ -31,10 +31,6 @@ const Tablero: FC = () => {
           index={index}
           color="verde"
           caracter={casilla}
-          jugador={{
-            value: jugador,
-            setValue: setJugador,
-          }}
           setCasilla={handleCasilla}
         />
       ))}

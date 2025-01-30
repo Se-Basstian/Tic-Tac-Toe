@@ -2,10 +2,21 @@ import Tablero from "./components/Tablero";
 import Jugador from "./components/Jugador";
 import Menu from "./components/Menu";
 import clsx from "clsx";
+import { DataContext } from "./shared/context";
+import { useState } from "react";
 
 function App() {
+  const [jugador, setJugador] = useState<"one" | "two">("one");
+
   return (
-    <>
+    <DataContext.Provider
+      value={{
+        jugador: {
+          value: jugador,
+          setValue: setJugador,
+        },
+      }}
+    >
       <header className={clsx("w-full flex justify-center mt-9 mb-4")}>
         <Menu turno="Percy" />
       </header>
@@ -24,7 +35,7 @@ function App() {
           </section>
         </article>
       </main>
-    </>
+    </DataContext.Provider>
   );
 }
 
