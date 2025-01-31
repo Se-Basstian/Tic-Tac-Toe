@@ -5,7 +5,7 @@ import imgReiniciar from "../assets/images/replay.png";
 type Props = {
   turno: string;
 };
-const Menu: FC<Props> = ({ turno }) => {
+const BarraOpcs: FC<Props> = ({ turno }) => {
   return (
     <article
       className={clsx(
@@ -41,4 +41,4 @@ const Menu: FC<Props> = ({ turno }) => {
   );
 };
 
-export default Menu;
+export default BarraOpcs;

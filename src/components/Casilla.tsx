@@ -31,7 +31,7 @@ export const Casilla: FC<Props> = ({ caracter, color, index, setCasilla }) => {
   return (
     <button
       type="button"
-      className={clsx("h-full w-full text-4xl font-bold rounded-xl ", {
+      className={clsx("w-ful aspect-square text-4xl font-bold rounded-xl ", {
         "bg-yellow-400": colorCasilla === "amarrillo",
         "bg-blue-400": colorCasilla === "azul",
         "bg-green-400": colorCasilla === "verde",
