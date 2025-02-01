@@ -1,9 +1,16 @@
 import clsx from "clsx";
-import type { FC } from "react";
+import { useState, type FC } from "react";
 import { Link } from "react-router";
 import Button from "../components/Button";
+import InputJugadores from "../components/InputJugadores";
 
 const Menu: FC = () => {
+  const [mostrarInputJugadores, setMostrarInputJugadores] = useState(false);
+
+  const handleClickButton = () => {
+    setMostrarInputJugadores(true);
+  };
+
   return (
     <>
       <main
@@ -36,10 +43,13 @@ const Menu: FC = () => {
               <Button>Jugador vs Máquina</Button>
             </Link>
 
-            <Button color="amarrillo">Jugador vc Jugador</Button>
+            <Button color="amarrillo" onClick={handleClickButton}>
+              Jugador vc Jugador
+            </Button>
           </section>
         </article>
       </main>
+      {mostrarInputJugadores && <InputJugadores />}
     </>
   );
 };

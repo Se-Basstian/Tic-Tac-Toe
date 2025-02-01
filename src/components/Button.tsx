@@ -4,8 +4,9 @@ import type { FC, ReactNode } from "react";
 type Props = {
   children?: ReactNode;
   color?: "azul" | "verde" | "amarrillo";
+  onClick?: () => void;
 };
-const Button: FC<Props> = ({ children, color }) => {
+const Button: FC<Props> = ({ children, color, onClick }) => {
   return (
     <button
       type="button"
@@ -20,6 +21,7 @@ const Button: FC<Props> = ({ children, color }) => {
           "bg-yellow-500": color === "amarrillo",
         },
       )}
+      onClick={onClick}
     >
       {children}
     </button>
