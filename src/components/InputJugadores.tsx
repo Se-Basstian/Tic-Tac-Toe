@@ -1,34 +1,52 @@
-import clsx from "clsx";
-import type { FC } from "react";
-import InputText from "./InputText";
-import Button from "./Button";
+import clsx from "clsx"
+import type { FC } from "react"
+import InputText from "./InputText"
+import Button from "./Button"
 
-const InputJugadores: FC = () => {
+type Props = {
+  setMostrarInputJugadoresToFalse?: (value: boolean) => void
+}
+
+const InputJugadores: FC<Props> = ({ setMostrarInputJugadoresToFalse }) => {
+  const handleClickButtonCerrar = () => {
+    if (setMostrarInputJugadoresToFalse) {
+      setMostrarInputJugadoresToFalse(false)
+    }
+  }
+
   return (
     <>
       <div
-        className={clsx("absolute top-0 w-full h-full bg-[rgb(0,0,0,0.6)]")}
+        className={clsx("absolute top-0 h-full w-full bg-[rgb(0,0,0,0.6)]")}
       />
 
       <article
         className={clsx(
-          "h-[350px] w-[300px] absolute top-1/2 left-1/2",
+          "absolute top-1/2 left-1/2 h-[350px] w-[300px]",
           "-translate-x-1/2 -translate-y-1/2",
-          "border-2 border-zinc-400 rounded-xl",
+          "rounded-xl border-2 border-zinc-400",
           "bg-zinc-600 p-2",
-          "flex flex-col gap-7 justify-evenly items-center",
+          "flex flex-col items-center justify-evenly gap-7"
         )}
       >
         <InputText titulo="Jugador 1" />
         <InputText titulo="Jugador 2" />
 
-        <section className={clsx("w-full flex justify-around")}>
-          <Button>Cerrar</Button>
-          <Button color="verde"> Jugar</Button>
+        <section className={clsx("flex w-full justify-around")}>
+          <Button onClick={handleClickButtonCerrar}>Cerrar</Button>
+          <Button
+            color="verde"
+            onClick={() => {
+              console.log("holad")
+            }}
+          >
+            {" "}
+            Jugar
+          </Button>
         </section>
       </article>
     </>
-  );
-};
+  )
+}
 
-export default InputJugadores;
+export default InputJugadores

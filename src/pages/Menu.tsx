@@ -1,34 +1,33 @@
-import clsx from "clsx";
-import { useState, type FC } from "react";
-import { Link } from "react-router";
-import Button from "../components/Button";
-import InputJugadores from "../components/InputJugadores";
+import clsx from "clsx"
+import { useState, type FC } from "react"
+import Button from "../components/Button"
+import InputJugadores from "../components/InputJugadores"
 
 const Menu: FC = () => {
-  const [mostrarInputJugadores, setMostrarInputJugadores] = useState(false);
+  const [mostrarInputJugadores, setMostrarInputJugadores] = useState(false)
 
   const handleClickButton = () => {
-    setMostrarInputJugadores(true);
-  };
+    setMostrarInputJugadores(true)
+  }
 
   return (
     <>
       <main
         className={clsx(
-          "max-w-[1010px] h-[100vh] mx-auto px-4",
-          "flex justify-center items-center",
+          "mx-auto h-[100vh] max-w-[1010px] px-4",
+          "flex items-center justify-center"
         )}
       >
         <article
           className={clsx(
             "h-[400px] w-[350px]",
-            "border-4 border-zinc-500 rounded-xl",
+            "rounded-xl border-4 border-zinc-500"
           )}
         >
           <header
             className={clsx(
-              "h-13 w-full bg-zinc-500 text-white text-3xl font-bold",
-              "flex justify-center items-center",
+              "h-13 w-full bg-zinc-500 text-3xl font-bold text-white",
+              "flex items-center justify-center"
             )}
           >
             Tic Tac Toe
@@ -36,12 +35,10 @@ const Menu: FC = () => {
 
           <section
             className={clsx(
-              "h-[348px] w-full flex flex-col justify-center items-center gap-10",
+              "flex h-[348px] w-full flex-col items-center justify-center gap-10"
             )}
           >
-            <Link to={"/area-de-juegos"}>
-              <Button>Jugador vs Máquina</Button>
-            </Link>
+            <Button>Jugador vs Máquina</Button>
 
             <Button color="amarrillo" onClick={handleClickButton}>
               Jugador vc Jugador
@@ -49,9 +46,13 @@ const Menu: FC = () => {
           </section>
         </article>
       </main>
-      {mostrarInputJugadores && <InputJugadores />}
+      {mostrarInputJugadores && (
+        <InputJugadores
+          setMostrarInputJugadoresToFalse={setMostrarInputJugadores}
+        />
+      )}
     </>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

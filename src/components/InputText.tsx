@@ -1,18 +1,24 @@
-import clsx from "clsx";
-import { useState, type FC } from "react";
+import clsx from "clsx"
+import { type ChangeEvent, useState, type FC } from "react"
 
 type Props = {
-  titulo: string;
-};
-const InputText: FC<Props> = ({ titulo }) => {
-  const [tituloEnFoco, setTituloEnFoco] = useState(false);
+  titulo: string
+  setValorTexto?: (valor: string) => void
+}
+const InputText: FC<Props> = ({ titulo, setValorTexto }) => {
+  const [tituloEnFoco, setTituloEnFoco] = useState(false)
 
   const handleFocus = () => {
-    setTituloEnFoco(true);
-  };
+    setTituloEnFoco(true)
+  }
   const handleBlur = () => {
-    setTituloEnFoco(false);
-  };
+    setTituloEnFoco(false)
+  }
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    if (setValorTexto) {
+      setValorTexto(e.target.value)
+    }
+  }
 
   return (
     <label className={clsx("relative")}>
@@ -23,8 +29,8 @@ const InputText: FC<Props> = ({ titulo }) => {
           "transition duration-400 ease-linear",
           {
             "top-1/2 -translate-y-1/2": !tituloEnFoco,
-            "-top-5 text-white text-sm": tituloEnFoco,
-          },
+            "-top-5 text-sm text-white": tituloEnFoco,
+          }
         )}
       >
         {titulo}
@@ -32,12 +38,13 @@ const InputText: FC<Props> = ({ titulo }) => {
       <input
         type="text"
         required
-        className={clsx("h-8 bg-white rounded-sm outline-none", "p-1")}
+        className={clsx("h-8 rounded-sm bg-white outline-none", "p-1")}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onChange={handleChangeInput}
       />
     </label>
-  );
-};
+  )
+}
 
-export default InputText;
+export default InputText

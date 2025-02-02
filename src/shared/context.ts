@@ -1,10 +1,10 @@
-import { createContext } from "react";
+import { createContext } from "react"
 
 export const DataContext = createContext(
   {} as {
     jugador: {
-      value: "one" | "two";
-      setValue: (value: "one" | "two") => void;
-    };
-  },
-);
+      value: [numero: "one" | "two", nombre?: string]
+      setValue: (value: [numero: "one" | "two", nombre?: string]) => void
+    }
+  }
+)

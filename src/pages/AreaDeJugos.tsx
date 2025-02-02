@@ -1,43 +1,34 @@
-import type { FC } from "react";
-import Tablero from "../components/Tablero";
-import Jugador from "../components/Jugador";
-import BarraOpcs from "../components/BarraOpcs";
-import { DataContext } from "../shared/context";
-import clsx from "clsx";
-import { useState } from "react";
+import type { FC } from "react"
+import Tablero from "../components/Tablero"
+import Jugador from "../components/Jugador"
+import BarraOpcs from "../components/BarraOpcs"
+import clsx from "clsx"
 
 const AreaDeJuegos: FC = () => {
-  const [jugador, setJugador] = useState<"one" | "two">("one");
+    return (
+        <>
+            <header
+                className={clsx("mt-9 mb-4 flex w-full justify-center px-4")}
+            >
+                <BarraOpcs turno="Percy" />
+            </header>
+            <main className="flex w-full justify-center px-4">
+                <article className="w-[400px]">
+                    <Tablero />
+                    <section
+                        className={clsx(
+                            "mt-4 flex w-full justify-between gap-2 pt-7 text-white",
+                            "items-center border-t-2 border-zinc-500 max-[431px]:flex-col"
+                        )}
+                    >
+                        <Jugador nombre="Percy" derecha />
+                        <p className="text-2xl font-bold">VS</p>
+                        <Jugador izquierda />
+                    </section>
+                </article>
+            </main>
+        </>
+    )
+}
 
-  return (
-    <DataContext.Provider
-      value={{
-        jugador: {
-          value: jugador,
-          setValue: setJugador,
-        },
-      }}
-    >
-      <header className={clsx("w-full flex justify-center mt-9 mb-4 px-4")}>
-        <BarraOpcs turno="Percy" />
-      </header>
-      <main className="w-full flex justify-center px-4">
-        <article className="w-[400px]">
-          <Tablero />
-          <section
-            className={clsx(
-              "w-full flex gap-2 justify-between text-white mt-4 pt-7",
-              "border-t-2 border-zinc-500 items-center max-[431px]:flex-col",
-            )}
-          >
-            <Jugador nombre="Percy" derecha />
-            <p className="font-bold text-2xl">VS</p>
-            <Jugador izquierda />
-          </section>
-        </article>
-      </main>
-    </DataContext.Provider>
-  );
-};
-
-export default AreaDeJuegos;
+export default AreaDeJuegos
