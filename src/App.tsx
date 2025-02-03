@@ -5,14 +5,22 @@ import { DataContext } from "./shared/context"
 import { useState } from "react"
 
 function App() {
-  const [jugador, setJugador] = useState<["one" | "two", string?]>(["one"])
+  const [turno, setTurno] = useState<"one" | "two">("one")
+  const [jugadores, setJugadores] = useState<{ one: string; two: string }>({
+    one: "",
+    two: "",
+  })
 
   return (
     <DataContext.Provider
       value={{
-        jugador: {
-          value: jugador,
-          setValue: setJugador,
+        turno: {
+          valor: turno,
+          setValor: setTurno,
+        },
+        jugadores: {
+          valor: jugadores,
+          setValor: setJugadores,
         },
       }}
     >

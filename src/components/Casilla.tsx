@@ -12,22 +12,20 @@ export const Casilla: FC<Props> = ({ caracter, color, index, setCasilla }) => {
   const [colorCasilla, setColorCasilla] = useState(color)
   const [activo, setActivo] = useState(false)
 
-  const { jugador } = useContext(DataContext)
+  const { turno } = useContext(DataContext)
 
   const handleButton = () => {
-    if (jugador.value[0] === "one") {
+    if (turno.valor === "one") {
       setColorCasilla("amarrillo")
-      const newJugador: ["one" | "two", string?] = ["two"]
-      jugador.setValue(newJugador)
+      turno.setValor("two")
     }
-    if (jugador.value[0] === "two") {
+    if (turno.valor === "two") {
       setColorCasilla("azul")
-      const newJugador: ["one" | "two", string?] = ["one"]
-      jugador.setValue(newJugador)
+      turno.setValor("one")
     }
 
     setActivo(true)
-    setCasilla(index, jugador.value[0])
+    setCasilla(index, turno.valor)
   }
 
   return (

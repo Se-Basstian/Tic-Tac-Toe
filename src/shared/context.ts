@@ -2,9 +2,16 @@ import { createContext } from "react"
 
 export const DataContext = createContext(
   {} as {
-    jugador: {
-      value: [numero: "one" | "two", nombre?: string]
-      setValue: (value: [numero: "one" | "two", nombre?: string]) => void
+    turno: {
+      valor: "one" | "two"
+      setValor: (valor: "one" | "two") => void
+    }
+    jugadores: {
+      valor: {
+        one: string
+        two: string
+      }
+      setValor: (valor: { one: string; two: string }) => void
     }
   }
 )

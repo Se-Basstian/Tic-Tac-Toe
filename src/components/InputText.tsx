@@ -3,16 +3,19 @@ import { type ChangeEvent, useState, type FC } from "react"
 
 type Props = {
   titulo: string
-  setValorTexto?: (valor: string) => void
+  setValorTexto: (value: string) => void
+  valorTexto: string
 }
-const InputText: FC<Props> = ({ titulo, setValorTexto }) => {
+const InputText: FC<Props> = ({ titulo, setValorTexto, valorTexto }) => {
   const [tituloEnFoco, setTituloEnFoco] = useState(false)
 
   const handleFocus = () => {
     setTituloEnFoco(true)
   }
   const handleBlur = () => {
-    setTituloEnFoco(false)
+    if (valorTexto === "") {
+      setTituloEnFoco(false)
+    }
   }
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (setValorTexto) {
