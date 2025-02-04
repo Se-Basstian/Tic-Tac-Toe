@@ -52,7 +52,7 @@ const InputJugadores: FC<Props> = ({
 
       <article
         className={clsx(
-          "absolute top-1/2 left-1/2 h-[350px] w-[300px]",
+          "absolute top-1/2 left-1/2 h-[350px] w-[300px] max-[330px]:w-[250px]",
           "-translate-x-1/2 -translate-y-1/2",
           "rounded-xl border-2 border-zinc-400",
           "bg-zinc-600 p-2",

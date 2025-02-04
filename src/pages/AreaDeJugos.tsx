@@ -6,12 +6,12 @@ import clsx from "clsx"
 import { DataContext } from "../shared/context"
 
 const AreaDeJuegos: FC = () => {
-  const { jugadores } = useContext(DataContext)
+  const { jugadores, turno } = useContext(DataContext)
 
   return (
     <>
       <header className={clsx("mt-9 mb-4 flex w-full justify-center px-4")}>
-        <BarraOpcs turno="Percy" />
+        <BarraOpcs turno={jugadores.valor[turno.valor]} />
       </header>
       <main className="flex w-full justify-center px-4">
         <article className="w-[400px]">

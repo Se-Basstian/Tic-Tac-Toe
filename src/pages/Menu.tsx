@@ -43,7 +43,8 @@ const Menu: FC = () => {
 
           <section
             className={clsx(
-              "flex h-[348px] w-full flex-col items-center justify-center gap-10"
+              "flex h-[348px] w-full flex-col items-center justify-center gap-10",
+              "px-2"
             )}
           >
             <Button onClick={handleClickButtonJvsM}>Jugador vs Máquina</Button>

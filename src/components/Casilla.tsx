@@ -31,11 +31,16 @@ export const Casilla: FC<Props> = ({ caracter, color, index, setCasilla }) => {
   return (
     <button
       type="button"
-      className={clsx("w-ful aspect-square rounded-xl text-4xl font-bold", {
-        "bg-yellow-400": colorCasilla === "amarrillo",
-        "bg-blue-400": colorCasilla === "azul",
-        "bg-green-400": colorCasilla === "verde",
-      })}
+      className={clsx(
+        "w-ful aspect-square rounded-xl text-4xl font-bold",
+        "shadow-white",
+        {
+          "bg-yellow-400": colorCasilla === "amarrillo",
+          "bg-blue-400": colorCasilla === "azul",
+          "bg-green-400 hover:scale-95 hover:text-white hover:shadow-md":
+            colorCasilla === "verde",
+        }
+      )}
       onClick={handleButton}
       disabled={activo}
     >
