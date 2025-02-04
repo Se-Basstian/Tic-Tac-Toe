@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import type { ChangeEvent, FC } from "react"
 import { useState, useEffect } from "react"
+import audioKeydown from "../assets/musics/teclado-mecanico.mp3"
 
 type Props = {
   titulo: string
@@ -10,6 +11,8 @@ type Props = {
 const InputText: FC<Props> = ({ titulo, setValorTexto, valorTexto }) => {
   const [tituloEnFoco, setTituloEnFoco] = useState(false)
   const [inputDisabled, setInputDisabled] = useState(false)
+
+  const audiokeyDown = new Audio(audioKeydown)
 
   useEffect(() => {
     if (valorTexto === "") {
@@ -38,6 +41,9 @@ const InputText: FC<Props> = ({ titulo, setValorTexto, valorTexto }) => {
       setValorTexto(e.target.value)
     }
   }
+  const handleKeyDown = () => {
+    audiokeyDown.play()
+  }
 
   return (
     <label className={clsx("relative")}>
@@ -62,6 +68,7 @@ const InputText: FC<Props> = ({ titulo, setValorTexto, valorTexto }) => {
         onBlur={handleBlur}
         onChange={handleChangeInput}
         disabled={inputDisabled}
+        onKeyDown={handleKeyDown}
       />
     </label>
   )

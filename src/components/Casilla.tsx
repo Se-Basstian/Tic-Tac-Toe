@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { useContext, useState, type FC } from "react"
 import { DataContext } from "../shared/context"
+import clickCasilla from "../assets/musics/click-casilla.mp3"
 
 type Props = {
   index: number
@@ -12,9 +13,13 @@ export const Casilla: FC<Props> = ({ caracter, color, index, setCasilla }) => {
   const [colorCasilla, setColorCasilla] = useState(color)
   const [activo, setActivo] = useState(false)
 
+  const audioClickCasilla = new Audio(clickCasilla)
+
   const { turno } = useContext(DataContext)
 
   const handleButton = () => {
+    audioClickCasilla.play()
+
     if (turno.valor === "one") {
       setColorCasilla("amarrillo")
       turno.setValor("two")
