@@ -1,44 +1,52 @@
-import clsx from "clsx";
-import type { FC } from "react";
-import imgReiniciar from "../assets/images/replay.png";
+import clsx from "clsx"
+import type { FC } from "react"
+import imgReiniciar from "../assets/images/replay.png"
+import { useNavigate } from "react-router"
 
 type Props = {
-  turno: string;
-};
+  turno: string
+}
 const BarraOpcs: FC<Props> = ({ turno }) => {
+  const navigate = useNavigate()
+
+  const handleButtonReiniciar = () => {
+    navigate("/")
+  }
+
   return (
     <article
       className={clsx(
-        "w-[400px] flex justify-between",
-        "border-b-2 border-zinc-500 pb-2",
+        "flex w-[400px] justify-between",
+        "border-b-2 border-zinc-500 pb-2"
       )}
     >
       <section className="flex">
-        <p className="text-yellow-300 text-3xl font-bold">X</p>
-        <p className="text-blue-300 text-3xl font-bold">O</p>
+        <p className="text-3xl font-bold text-yellow-300">X</p>
+        <p className="text-3xl font-bold text-blue-300">O</p>
       </section>
       <section
         className={clsx(
-          "flex gap-2 py-1 px-2 rounded-lg border-2 border-zinc-400",
-          "h-fit",
+          "flex gap-2 rounded-lg border-2 border-zinc-400 px-2 py-1",
+          "h-fit"
         )}
       >
-        <p className="text-white font-bold uppercase">Turno</p>
-        <p className="w-fit bg-zinc-500 text-white ps-1 pe-6">{turno}</p>
+        <p className="font-bold text-white uppercase">Turno</p>
+        <p className="w-fit bg-zinc-500 ps-1 pe-6 text-white">{turno}</p>
       </section>
 
       <button
-        className={clsx("w-fit h-fit bg-purple-600 rounded-lg p-2")}
+        className={clsx("h-fit w-fit rounded-lg bg-purple-600 p-2")}
         type="button"
+        onClick={handleButtonReiniciar}
       >
         <img
-          className="w-6 h-6 hover:rotate-180 transition duration-500 ease-out"
+          className="h-6 w-6 transition duration-500 ease-out hover:rotate-180"
           src={imgReiniciar}
           alt="Botón reiniciar"
         />
       </button>
     </article>
-  );
-};
+  )
+}
 
-export default BarraOpcs;
+export default BarraOpcs

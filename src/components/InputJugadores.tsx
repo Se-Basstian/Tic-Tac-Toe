@@ -1,17 +1,30 @@
 import clsx from "clsx"
-import { useContext, useState, type FC } from "react"
+import { useContext, useEffect, useState, type FC } from "react"
 import InputText from "./InputText"
 import Button from "./Button"
 import { DataContext } from "../shared/context"
+import { useNavigate } from "react-router"
 
 type Props = {
   setMostrarInputJugadoresToFalse?: (value: boolean) => void
+  nombreJugadorOne?: string
+  nombreJudadorTwo?: string
 }
 
-const InputJugadores: FC<Props> = ({ setMostrarInputJugadoresToFalse }) => {
+const InputJugadores: FC<Props> = ({
+  setMostrarInputJugadoresToFalse,
+  nombreJugadorOne = "",
+  nombreJudadorTwo = "",
+}) => {
   const [inputTextoJugador1, setInputTextoJugador1] = useState("")
   const [inputTextoJugador2, setInputTextoJugador2] = useState("")
   const { jugadores } = useContext(DataContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setInputTextoJugador1(nombreJugadorOne)
+    setInputTextoJugador2(nombreJudadorTwo)
+  }, [nombreJugadorOne, nombreJudadorTwo])
 
   const handleClickButtonCerrar = () => {
     if (setMostrarInputJugadoresToFalse) {
@@ -23,6 +36,12 @@ const InputJugadores: FC<Props> = ({ setMostrarInputJugadoresToFalse }) => {
       one: inputTextoJugador1,
       two: inputTextoJugador2,
     })
+
+    if (inputTextoJugador1 === "" || inputTextoJugador2 === "") {
+      alert("Debes llenar los campos de jugadores")
+    } else {
+      navigate("/area-de-juegos")
+    }
   }
 
   return (

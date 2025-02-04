@@ -5,8 +5,16 @@ import InputJugadores from "../components/InputJugadores"
 
 const Menu: FC = () => {
   const [mostrarInputJugadores, setMostrarInputJugadores] = useState(false)
+  const [nombreJugador, setNombreJugador] = useState("")
 
-  const handleClickButton = () => {
+  const handleClickButtonJvsJ = () => {
+    setNombreJugador("")
+
+    setMostrarInputJugadores(true)
+  }
+  const handleClickButtonJvsM = () => {
+    setNombreJugador("Máquina")
+
     setMostrarInputJugadores(true)
   }
 
@@ -38,9 +46,9 @@ const Menu: FC = () => {
               "flex h-[348px] w-full flex-col items-center justify-center gap-10"
             )}
           >
-            <Button>Jugador vs Máquina</Button>
+            <Button onClick={handleClickButtonJvsM}>Jugador vs Máquina</Button>
 
-            <Button color="amarrillo" onClick={handleClickButton}>
+            <Button color="amarrillo" onClick={handleClickButtonJvsJ}>
               Jugador vc Jugador
             </Button>
           </section>
@@ -49,6 +57,7 @@ const Menu: FC = () => {
       {mostrarInputJugadores && (
         <InputJugadores
           setMostrarInputJugadoresToFalse={setMostrarInputJugadores}
+          nombreJudadorTwo={nombreJugador}
         />
       )}
     </>

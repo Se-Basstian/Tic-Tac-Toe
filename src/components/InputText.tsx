@@ -1,5 +1,6 @@
 import clsx from "clsx"
-import { type ChangeEvent, useState, type FC } from "react"
+import type { ChangeEvent, FC } from "react"
+import { useState, useEffect } from "react"
 
 type Props = {
   titulo: string
@@ -8,6 +9,21 @@ type Props = {
 }
 const InputText: FC<Props> = ({ titulo, setValorTexto, valorTexto }) => {
   const [tituloEnFoco, setTituloEnFoco] = useState(false)
+  const [inputDisabled, setInputDisabled] = useState(false)
+
+  useEffect(() => {
+    if (valorTexto === "") {
+      setTituloEnFoco(false)
+    } else {
+      setTituloEnFoco(true)
+    }
+
+    if (valorTexto === "Máquina") {
+      setInputDisabled(true)
+    } else {
+      setInputDisabled(false)
+    }
+  }, [valorTexto])
 
   const handleFocus = () => {
     setTituloEnFoco(true)
@@ -40,11 +56,12 @@ const InputText: FC<Props> = ({ titulo, setValorTexto, valorTexto }) => {
       </b>
       <input
         type="text"
-        required
+        value={valorTexto}
         className={clsx("h-8 rounded-sm bg-white outline-none", "p-1")}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChangeInput}
+        disabled={inputDisabled}
       />
     </label>
   )
