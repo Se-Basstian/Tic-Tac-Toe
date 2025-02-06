@@ -1,7 +1,9 @@
-import { useState, type FC } from "react"
+import { useContext, useState, type FC } from "react"
 import { Casilla } from "./Casilla"
 import clsx from "clsx"
 import { ContextTablero } from "../shared/contextTablero"
+import VentanaGanador from "./VentanaGanador"
+import { DataContext } from "../shared/context"
 
 const Tablero: FC = () => {
   let i = 0
@@ -11,6 +13,7 @@ const Tablero: FC = () => {
   const [casillasJugadorOne, setCasillasJugadorOne] = useState<number[]>([])
   const [casillasJugadorTwo, setCasillasJugadorTwo] = useState<number[]>([])
   const [ganador, setGanador] = useState<"one" | "two">()
+  const { jugadores } = useContext(DataContext)
 
   const handleCasilla = (index: number, jugador: "one" | "two") => {
     const newCasillas: (string | number)[] = casillasCaracter.map(
@@ -40,11 +43,7 @@ const Tablero: FC = () => {
         },
       }}
     >
-      <div
-        className={clsx("grid max-h-[400px] w-full grid-cols-3 gap-3", {
-          "bg-white": ganador === "one" || ganador === "two",
-        })}
-      >
+      <div className={clsx("grid max-h-[400px] w-full grid-cols-3 gap-3")}>
         {casillasCaracter.map((casilla, index) => (
           <Casilla
             key={`casilla-${i++}`}
@@ -56,6 +55,9 @@ const Tablero: FC = () => {
           />
         ))}
       </div>
+      {(ganador === "one" || ganador === "two") && (
+        <VentanaGanador nombreGanador={jugadores.valor[ganador]} />
+      )}
     </ContextTablero.Provider>
   )
 }

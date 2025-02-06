@@ -23,7 +23,7 @@ const porFila: Comprobar = (casillas) => {
 const porColumna: Comprobar = (casillas) => {
   const columnasGanadoras = [
     [1, 4, 7],
-    [2, 5, 6],
+    [2, 5, 8],
     [3, 6, 9],
   ]
 
