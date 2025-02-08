@@ -1,16 +1,20 @@
 import clsx from "clsx"
 import { useEffect, type FC } from "react"
 import { useNavigate } from "react-router"
+import triunfo from "../assets/musics/triunfo.mp3"
 
 const VentanaGanador: FC<{
   nombreGanador: string
 }> = (props) => {
   const navigate = useNavigate()
+  const audioTriunfo = new Audio(triunfo)
 
   useEffect(() => {
+    audioTriunfo.play()
     setTimeout(() => {
       navigate("/")
-    }, 10000)
+      location.reload()
+    }, 8500)
   })
 
   return (

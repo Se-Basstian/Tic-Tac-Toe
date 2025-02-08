@@ -11,6 +11,7 @@ const BarraOpcs: FC<Props> = ({ turno }) => {
 
   const handleButtonReiniciar = () => {
     navigate("/")
+    location.reload()
   }
 
   return (
