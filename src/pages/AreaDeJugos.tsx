@@ -1,12 +1,24 @@
-import { useContext, type FC } from "react"
+import { useContext, useEffect, type FC } from "react"
 import Tablero from "../components/Tablero"
 import Jugador from "../components/Jugador"
 import BarraOpcs from "../components/BarraOpcs"
 import clsx from "clsx"
 import { DataContext } from "../shared/context"
+import { useNavigate } from "react-router"
 
 const AreaDeJuegos: FC = () => {
   const { jugadores, turno } = useContext(DataContext)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (jugadores.valor.one === "" || jugadores.valor.one === undefined) {
+      navigate("/")
+    }
+    if (jugadores.valor.two === "" || jugadores.valor.two === undefined) {
+      navigate("/")
+    }
+  })
 
   return (
     <>
