@@ -10,5 +10,9 @@ export const ContextTablero = createContext(
       valor: number[]
       setValor: (valor: number[]) => void
     }
+    casillasTablero: {
+      valor: (number | string)[]
+      setValor: (valor: (number | string)[]) => void
+    }
   }
 )

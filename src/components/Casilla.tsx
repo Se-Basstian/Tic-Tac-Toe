@@ -9,17 +9,16 @@ type Props = {
   index: number
   caracter: string | number
   setCasilla: (index: number, jugador: "one" | "two") => void
-  color: "amarrillo" | "azul" | "verde"
+  // color: "amarrillo" | "azul" | "verde"
   setGanador: (valor: "one" | "two") => void
 }
 export const Casilla: FC<Props> = ({
   caracter,
-  color,
   index,
   setCasilla,
   setGanador,
 }) => {
-  const [colorCasilla, setColorCasilla] = useState(color)
+  // const [colorCasilla, setColorCasilla] = useState(color)
   const [activo, setActivo] = useState(false)
   const { casillasJugadorOne, casillasJugadorTwo } = useContext(ContextTablero)
 
@@ -38,6 +37,9 @@ export const Casilla: FC<Props> = ({
   })
 
   const handleButton = () => {
+    if (caracter === "O" || caracter === "X") {
+      return
+    }
     audioClickCasilla.play()
 
     if (turno.valor === "one") {
@@ -48,7 +50,7 @@ export const Casilla: FC<Props> = ({
 
       casillasJugadorOne.setValor(newCasillaJugadorOne)
 
-      setColorCasilla("amarrillo")
+      // setColorCasilla("amarrillo")
       turno.setValor("two")
     }
 
@@ -60,7 +62,7 @@ export const Casilla: FC<Props> = ({
 
       casillasJugadorTwo.setValor(newCasillaJugadorTwo)
 
-      setColorCasilla("azul")
+      // setColorCasilla("azul")
       turno.setValor("one")
     }
 
@@ -75,10 +77,10 @@ export const Casilla: FC<Props> = ({
         "w-ful aspect-square rounded-xl text-4xl font-bold",
         "shadow-white",
         {
-          "bg-yellow-400": colorCasilla === "amarrillo",
-          "bg-blue-400": colorCasilla === "azul",
+          "bg-yellow-400": caracter === "X",
+          "bg-blue-400": caracter === "O",
           "bg-green-400 hover:scale-95 hover:text-white hover:shadow-md":
-            colorCasilla === "verde",
+            caracter !== "X" && caracter !== "O",
         }
       )}
       onClick={handleButton}

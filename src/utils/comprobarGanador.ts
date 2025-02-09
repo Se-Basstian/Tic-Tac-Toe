@@ -43,7 +43,7 @@ const porColumna: Comprobar = (casillas) => {
 const porDiagonal: Comprobar = (casillas) => {
   const diagonalesGanadoras = [
     [1, 5, 9],
-    [3, 6, 9],
+    [3, 5, 7],
   ]
 
   for (const diagonal of diagonalesGanadoras) {

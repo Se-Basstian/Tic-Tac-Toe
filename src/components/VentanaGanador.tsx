@@ -14,7 +14,7 @@ const VentanaGanador: FC<{
     setTimeout(() => {
       navigate("/")
       location.reload()
-    }, 8500)
+    }, 4000)
   })
 
   return (
